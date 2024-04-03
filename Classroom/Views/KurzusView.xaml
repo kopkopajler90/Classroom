@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Classroom.Views.KurzusView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Classroom.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Kurzus adatai" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+            <TextBlock Text="Név:" FontWeight="Bold"/>
+            <TextBox Text="{Binding Nev}" Margin="0,0,0,10"/>
+            <TextBlock Text="Oktató:" FontWeight="Bold"/>
+            <ComboBox ItemsSource="{Binding Oktatok}" SelectedValue="{Binding OktatoId}" DisplayMemberPath="Vnev" Margin="0,0,0,10"/>
+            <TextBlock Text="Kezdet:" FontWeight="Bold"/>
+            <DatePicker SelectedDate="{Binding Kezdet}" Margin="0,0,0,10"/>
+            <TextBlock Text="Vége:" FontWeight="Bold"/>
+            <DatePicker SelectedDate="{Binding Vege}" Margin="0,0,0,10"/>
+            <TextBlock Text="Tanulók:" FontWeight="Bold"/>
+            <ListBox ItemsSource="{Binding Tanulok}" DisplayMemberPath="Nev" Margin="0,0,0,10"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

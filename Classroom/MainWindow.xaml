@@ -1,0 +1,31 @@
+﻿<Window x:Class="Classroom.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Classroom"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Menu>
+            <MenuItem Header="_Fájl">
+                <MenuItem Header="_Kilépés" />
+            </MenuItem>
+            <MenuItem Header="_Nézet">
+                <MenuItem x:Name="miKurzusNezet" Header="Kurzusok" Click="miKurzusNezet_Click"></MenuItem>
+                <MenuItem Header="Tanulók"></MenuItem>
+                <MenuItem Header="Oktatók"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Hozzáadás">
+                <MenuItem Header="Kurzus"></MenuItem>
+                <MenuItem Header="Tanuló"></MenuItem>
+                <MenuItem Header="Oktató">
+                </MenuItem>
+
+            </MenuItem>
+
+
+        </Menu>
+
+    </Grid>
+</Window>
