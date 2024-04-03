@@ -77,7 +77,7 @@ namespace Classroom.Services.Implementations
 
         public async Task<Kurzus> GetByTanuloIdAsync(int tanuloId)
         {
-            var kurzus = await _context.Kurzusok.FirstOrDefaultAsync(k => k.TanuloId == tanuloId);
+            var kurzus = await _context.Kurzusok.FirstOrDefaultAsync(k => k.Id == tanuloId);
             if (kurzus != null)
             {
                 return kurzus;

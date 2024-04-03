@@ -9,15 +9,14 @@ using System.Threading.Tasks;
 
 namespace Classroom.ModelViews
 {
-    internal class TanuloModelView
+    internal class TanuloViewModel
     {
         private readonly ITanuloDataService _tanuloDataService;
         public ObservableCollection<Tanulo> TanulokOC { get; set; }
 
-        public TanuloModelView(ITanuloDataService tanuloDataService)
+        public TanuloViewModel(ITanuloDataService tanuloDataService)
         {
             _tanuloDataService = tanuloDataService;
-            _tanuloDataService.ChangesSaved += _tanuloDataService_ChangesSaved;
             TanulokOC = new ObservableCollection<Tanulo>();
             LoadData();
         }

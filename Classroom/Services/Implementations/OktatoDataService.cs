@@ -1,5 +1,6 @@
 ﻿using Classroom.Models;
 using Classroom.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,31 +9,64 @@ using System.Threading.Tasks;
 
 namespace Classroom.Services.Implementations
 {
-    internal class OktatoDataService : IOktatoDataService
+    public class OktatoDataService : IOktatoDataService
     {
-        public Task<Oktato> CreateAsync(Oktato oktato)
+        private readonly ClassroomContext _context;
+        public OktatoDataService(ClassroomContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _context.Database.EnsureCreated();
+        }
+        public async Task<Oktato> CreateAsync(Oktato oktato)
+        {
+            if(oktato != null)
+            {
+                await _context.Oktatok.AddAsync(oktato);
+                await _context.SaveChangesAsync();
+                return oktato;
+            }
+            throw new Exception("Nem sikerült az oktató létrehozása!");
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var oktato = await _context.Oktatok.FindAsync(id);
+            if (oktato != null)
+            {
+                _context.Oktatok.Remove(oktato);
+                await _context.SaveChangesAsync();
+            }
+
         }
 
-        public Task<IEnumerable<Oktato>> GetAllAsync()
+        public async Task<IEnumerable<Oktato>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var oktatok = await _context.Oktatok.ToListAsync();
+            if (oktatok != null)
+            {
+                return oktatok;
+            }
+            throw new Exception("Nincs oktató az adatbázisban!");
         }
 
-        public Task<Oktato> GetByIdAsync(int id)
+        public async Task<Oktato> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var oktato = await _context.Oktatok.FindAsync(id);
+            if (oktato != null)
+            {
+                return oktato;
+            }
+            throw new Exception("Nincs oktató az adatbázisban!");
         }
 
-        public Task UpdateAsync(Oktato oktato)
+        public async Task UpdateAsync(Oktato oktato)
         {
-            throw new NotImplementedException();
+            if(oktato != null)
+            {
+                _context.Oktatok.Update(oktato);
+                await _context.SaveChangesAsync();
+            }
+            throw new Exception("Nem sikerült az oktató frissítése!");
         }
     }
 }

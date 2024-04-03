@@ -14,7 +14,7 @@
             <MenuItem Header="_Nézet">
                 <MenuItem x:Name="miKurzusNezet" Header="Kurzusok" Click="miKurzusNezet_Click"></MenuItem>
                 <MenuItem Header="Tanulók"></MenuItem>
-                <MenuItem Header="Oktatók"></MenuItem>
+                <MenuItem x:Name="miOktatokNezet" Header="Oktatók" Click="miOktatokNezet_Click"></MenuItem>
             </MenuItem>
             <MenuItem Header="Hozzáadás">
                 <MenuItem Header="Kurzus"></MenuItem>
@@ -26,6 +26,8 @@
 
 
         </Menu>
+        <UserControl x:Name="ucKurzusNezet" Margin="0,39,0,0"/>
+
 
     </Grid>
 </Window>

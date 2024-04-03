@@ -1,4 +1,5 @@
 ﻿using Classroom.Models;
+using Classroom.ModelViews;
 using Classroom.Services.Implementations;
 using Classroom.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,7 +50,8 @@ namespace Classroom
 
             //HA VALAKI AZ APP-tól KÉR EGY UserViewModel PÉLDÁNYT AKKOR INNÉT AD EGYET!
             services.AddDbContext<ClassroomContext>();
-            //services.AddTransient<HirdetesListaModelView>();
+            services.AddTransient<OktatoViewModel>();
+
 
 
             return services.BuildServiceProvider();

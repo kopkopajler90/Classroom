@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Classroom.Models
 {
-    class ClassroomContext : DbContext
+    public class ClassroomContext : DbContext
     {
         private readonly string connStrRemote = ConfigurationManager.ConnectionStrings["connStrRemote"].ConnectionString;
 

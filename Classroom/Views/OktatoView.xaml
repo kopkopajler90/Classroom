@@ -7,14 +7,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel Margin="10">
-            <TextBlock Text="Oktató adatai" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
-            <TextBlock Text="Vezetéknév:" FontWeight="Bold"/>
-            <TextBox Text="{Binding Vnev}" Margin="0,0,0,10"/>
-            <TextBlock Text="Keresztnév:" FontWeight="Bold"/>
-            <TextBox Text="{Binding Knev}" Margin="0,0,0,10"/>
-            <TextBlock Text="Kurzusok:" FontWeight="Bold"/>
-            <ListBox ItemsSource="{Binding Kurzusok}" DisplayMemberPath="Nev" Margin="0,0,0,10"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Vezetéknév:" Margin="0,0,5,0"/>
+            <TextBox x:Name="VnevTextBox" Width="150" Margin="0,0,10,0" Text="{Binding UjOktato.Vnev, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Keresztnév:" Margin="0,0,5,0"/>
+            <TextBox x:Name="KnevTextBox" Width="150" Margin="0,0,10,0" Text="{Binding UjOktato.Knev, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button x:Name="HozzaadButton" Content="Hozzáadás" Command="{Binding HozzaadCommand}" Padding="5"/>
         </StackPanel>
+
+        <DataGrid Grid.Row="1" Margin="10" ItemsSource="{Binding Oktatok}" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Vezetéknév" Binding="{Binding Vnev}"/>
+                <DataGridTextColumn Header="Keresztnév" Binding="{Binding Knev}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

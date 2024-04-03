@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Classroom.Views;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,14 +17,21 @@ namespace Classroom
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly OktatoView _oktatoView;
         public MainWindow()
         {
             InitializeComponent();
+            _oktatoView = new OktatoView();
         }
 
         private void miKurzusNezet_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void miOktatokNezet_Click(object sender, RoutedEventArgs e)
+        {
+            ucKurzusNezet.Content = _oktatoView;
         }
     }
 }

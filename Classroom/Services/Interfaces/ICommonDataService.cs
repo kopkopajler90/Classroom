@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Classroom.Services.Interfaces
 {
-    internal interface ICommonDataService
+    public interface ICommonDataService
     {
-        event Action ChangesSaved;
 
     }
 }
