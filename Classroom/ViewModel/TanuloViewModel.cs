@@ -1,39 +1,73 @@
-﻿using Classroom.Models;
+﻿using Classroom.Commands;
+using Classroom.Models;
 using Classroom.Services.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Classroom.ModelViews
 {
-    internal class TanuloViewModel
+    public class TanuloViewModel : INotifyPropertyChanged
     {
         private readonly ITanuloDataService _tanuloDataService;
-        public ObservableCollection<Tanulo> TanulokOC { get; set; }
+        private ObservableCollection<Tanulo> _tanulok;
+        private Tanulo _ujTanulo = new Tanulo();
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public TanuloViewModel(ITanuloDataService tanuloDataService)
         {
             _tanuloDataService = tanuloDataService;
-            TanulokOC = new ObservableCollection<Tanulo>();
-            LoadData();
+            InitAsync();
+            HozzaadCommand = new RelayCommand(Hozzaad, CanHozzaad);
+        }
+        private async Task InitAsync()
+        {
+            await LoadTanulokAsync();
+        }
+        private async Task LoadTanulokAsync()
+        {
+            var tanulokList = await _tanuloDataService.GetAllAsync();
+            Tanulok = new ObservableCollection<Tanulo>(tanulokList);
         }
 
-        private void _tanuloDataService_ChangesSaved()
+        public ObservableCollection<Tanulo> Tanulok
         {
-            TanulokOC.Clear();
-            LoadData();
-        }
-
-        public async void LoadData()
-        {
-            var tanulok = await _tanuloDataService.GetAllAsync();
-            foreach (var tanulo in tanulok)
+            get { return _tanulok; }
+            set
             {
-                TanulokOC.Add(tanulo);
+                _tanulok = value;
+                OnPropertyChanged(nameof(Tanulok));
             }
+        }
+
+        public Tanulo UjTanulo
+        {
+            get { return _ujTanulo; }
+            set
+            {
+                _ujTanulo = value;
+                OnPropertyChanged(nameof(UjTanulo));
+            }
+        }
+
+        public ICommand HozzaadCommand { get; }
+
+        private async void Hozzaad(object obj)
+        {
+            await _tanuloDataService.CreateAsync(UjTanulo);
+            UjTanulo = new Tanulo();
+            await LoadTanulokAsync();
+        }
+
+        private bool CanHozzaad(object obj)
+        {
+            return !string.IsNullOrWhiteSpace(UjTanulo.Nev) && !string.IsNullOrWhiteSpace(UjTanulo.Email);
+        }
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

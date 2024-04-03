@@ -7,16 +7,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel Margin="10">
-            <TextBlock Text="Tanuló adatai" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
-            <TextBlock Text="Név:" FontWeight="Bold"/>
-            <TextBox Text="{Binding Nev}" Margin="0,0,0,10"/>
-            <TextBlock Text="Email:" FontWeight="Bold"/>
-            <TextBox Text="{Binding Email}" Margin="0,0,0,10"/>
-            <TextBlock Text="Kurzus:" FontWeight="Bold"/>
-            <ComboBox ItemsSource="{Binding Kurzus}" SelectedValue="{Binding KurzusId}" DisplayMemberPath="Nev" Margin="0,0,0,10"/>
-            <Button x:Name="btSave" Content="Mentés"  Margin="0,10,0,0" Click="btSave_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Név:" Margin="0,0,5,0"/>
+            <TextBox x:Name="NevTextBox" Width="150" Margin="0,0,10,0" Text="{Binding UjTanulo.Nev, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Email:" Margin="0,0,5,0"/>
+            <TextBox x:Name="EmailTextBox" Width="150" Margin="0,0,10,0" Text="{Binding UjTanulo.Email, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button x:Name="HozzaadButton" Content="Hozzáadás" Command="{Binding HozzaadCommand}" Padding="5"/>
         </StackPanel>
+
+        <DataGrid Grid.Row="1" Margin="10" ItemsSource="{Binding Tanulok}" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Név" Binding="{Binding Nev}"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 
 </UserControl>

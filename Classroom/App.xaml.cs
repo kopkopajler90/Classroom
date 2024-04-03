@@ -44,13 +44,15 @@ namespace Classroom
             var services = new ServiceCollection();
 
             //HA VALAMELYIK KONSTRUKTOR IDataService PÉLDÁNYT KÉR, AKKOR EGY DataService PÉLDÁNYT AD AZ "APP"
-            services.AddSingleton<IKurzusDataService, KurzusDataService>();
+            services.AddDbContext<ClassroomContext>();
+
             services.AddSingleton<IOktatoDataService, OktatoDataService>();
             services.AddSingleton<ITanuloDataService, TanuloDataService>();
+            services.AddSingleton<IKurzusDataService, KurzusDataService>();
 
             //HA VALAKI AZ APP-tól KÉR EGY UserViewModel PÉLDÁNYT AKKOR INNÉT AD EGYET!
-            services.AddDbContext<ClassroomContext>();
             services.AddTransient<OktatoViewModel>();
+            services.AddTransient<TanuloViewModel>();
 
 
 

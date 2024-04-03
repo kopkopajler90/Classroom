@@ -13,16 +13,11 @@
             </MenuItem>
             <MenuItem Header="_Nézet">
                 <MenuItem x:Name="miKurzusNezet" Header="Kurzusok" Click="miKurzusNezet_Click"></MenuItem>
-                <MenuItem Header="Tanulók"></MenuItem>
+                <MenuItem x:Name="miTanuloNezet" Header="Tanulók" Click="miTanuloNezet_Click"></MenuItem>
                 <MenuItem x:Name="miOktatokNezet" Header="Oktatók" Click="miOktatokNezet_Click"></MenuItem>
+                
             </MenuItem>
-            <MenuItem Header="Hozzáadás">
-                <MenuItem Header="Kurzus"></MenuItem>
-                <MenuItem Header="Tanuló"></MenuItem>
-                <MenuItem Header="Oktató">
-                </MenuItem>
-
-            </MenuItem>
+            
 
 
         </Menu>

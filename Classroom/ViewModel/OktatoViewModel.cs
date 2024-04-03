@@ -18,11 +18,14 @@ namespace Classroom.ModelViews
         public OktatoViewModel(IOktatoDataService oktatoDataService)
         {
             _oktatoDataService = oktatoDataService;
-            LoadOktatokAsync();
+            InitAsync();
             HozzaadCommand = new RelayCommand(Hozzaad, CanHozzaad);
         }
-
-        private async void LoadOktatokAsync()
+        private async Task InitAsync()
+        {
+            await LoadOktatokAsync();
+        }
+        private async Task LoadOktatokAsync()
         {
             var oktatokList = await _oktatoDataService.GetAllAsync();
             Oktatok = new ObservableCollection<Oktato>(oktatokList);
@@ -54,8 +57,9 @@ namespace Classroom.ModelViews
         {
             await _oktatoDataService.CreateAsync(UjOktato);
             UjOktato = new Oktato();
-            LoadOktatokAsync();
+            await LoadOktatokAsync(); // Await the loading method
         }
+
 
         private bool CanHozzaad(object obj)
         {

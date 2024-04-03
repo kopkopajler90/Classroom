@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Classroom.ModelViews;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,19 +22,14 @@ namespace Classroom.Views
     /// </summary>
     public partial class TanuloView : UserControl
     {
+        private readonly TanuloViewModel? _viewModel;
         public TanuloView()
         {
             InitializeComponent();
+            _viewModel = App.Current.Services.GetService<TanuloViewModel>();
+            DataContext = _viewModel ?? throw new System.ArgumentNullException(nameof(_viewModel));
         }
 
-        private void btAdd_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btSave_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }

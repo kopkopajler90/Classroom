@@ -15,7 +15,8 @@ namespace Classroom.Services.Implementations
         public OktatoDataService(ClassroomContext context)
         {
             _context = context;
-            _context.Database.EnsureCreated();
+           
+            
         }
         public async Task<Oktato> CreateAsync(Oktato oktato)
         {

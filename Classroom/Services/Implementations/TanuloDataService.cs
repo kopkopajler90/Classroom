@@ -13,12 +13,12 @@ namespace Classroom.Services.Implementations
     internal class TanuloDataService : ITanuloDataService
 
     {
-        public event Action? ChangesSaved;
         private readonly ClassroomContext _context;
         public TanuloDataService(ClassroomContext context)
         {
             _context = context;
-            _context.Database.EnsureCreated();
+         
+            
 
         }
         public async Task<Tanulo> CreateAsync(Tanulo tanulo)
@@ -27,7 +27,6 @@ namespace Classroom.Services.Implementations
             {
                 await _context.Tanulok.AddAsync(tanulo);
                 await _context.SaveChangesAsync();
-                ChangesSaved?.Invoke();
                 return tanulo;
             }
             throw new Exception("Nem sikerült a tanuló létrehozása!");
@@ -41,7 +40,6 @@ namespace Classroom.Services.Implementations
             {
                 _context.Tanulok.Remove(tanulo);
                 await _context.SaveChangesAsync();
-                ChangesSaved?.Invoke();
             }
         }
 
