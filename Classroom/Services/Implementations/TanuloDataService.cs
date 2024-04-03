@@ -55,7 +55,7 @@ namespace Classroom.Services.Implementations
 
         public async Task<Tanulo> GetByIdAsync(int id)
         {
-            var tanulo = await _context.Tanulok.FirstOrDefaultAsync(t => t.Id == id);
+            var tanulo = await _context.Tanulok.FindAsync(id);
             if (tanulo != null)
             {
                 return tanulo;

@@ -17,8 +17,8 @@ namespace Classroom
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly OktatoView _oktatoView;
-        private readonly TanuloView _tanuloView;
+        private  OktatoView _oktatoView;
+        private  TanuloView _tanuloView;
         public MainWindow()
         {
             InitializeComponent();
@@ -33,11 +33,13 @@ namespace Classroom
 
         private void miOktatokNezet_Click(object sender, RoutedEventArgs e)
         {
+            _oktatoView = new();
             ucKurzusNezet.Content = _oktatoView;
         }
 
         private void miTanuloNezet_Click(object sender, RoutedEventArgs e)
         {
+            _tanuloView = new();
             ucKurzusNezet.Content = _tanuloView;
         }
     }

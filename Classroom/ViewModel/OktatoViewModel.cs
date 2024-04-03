@@ -10,7 +10,7 @@ namespace Classroom.ModelViews
     public class OktatoViewModel : INotifyPropertyChanged
     {
         private readonly IOktatoDataService _oktatoDataService;
-        private ObservableCollection<Oktato> _oktatok;
+        private ObservableCollection<Oktato> _oktatok = new();
         private Oktato _ujOktato = new Oktato();
 
         public event PropertyChangedEventHandler? PropertyChanged;

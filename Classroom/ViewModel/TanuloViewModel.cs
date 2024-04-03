@@ -10,7 +10,7 @@ namespace Classroom.ModelViews
     public class TanuloViewModel : INotifyPropertyChanged
     {
         private readonly ITanuloDataService _tanuloDataService;
-        private ObservableCollection<Tanulo> _tanulok;
+        private ObservableCollection<Tanulo> _tanulok = new ObservableCollection<Tanulo>();
         private Tanulo _ujTanulo = new Tanulo();
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -18,8 +18,8 @@ namespace Classroom.ModelViews
         public TanuloViewModel(ITanuloDataService tanuloDataService)
         {
             _tanuloDataService = tanuloDataService;
-            InitAsync();
             HozzaadCommand = new RelayCommand(Hozzaad, CanHozzaad);
+            InitAsync();
         }
         private async Task InitAsync()
         {
