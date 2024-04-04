@@ -11,59 +11,56 @@ using System.Threading.Tasks;
 namespace Classroom.Services.Implementations
 {
     internal class TanuloDataService : ITanuloDataService
-
     {
         private readonly ClassroomContext _context;
         public TanuloDataService(ClassroomContext context)
         {
             _context = context;
-         
-            
-
         }
-        public async Task<Tanulo> CreateAsync(Tanulo tanulo)
+
+        public Task<Tanulo> CreateAsync(Tanulo tanulo)
         {
-           if(tanulo != null)
+            if (tanulo != null)
             {
-                await _context.Tanulok.AddAsync(tanulo);
-                await _context.SaveChangesAsync();
-                return tanulo;
+                _context.Tanulok.Add(tanulo);
+                _context.SaveChanges();
+                return Task.FromResult(tanulo);
             }
             throw new Exception("Nem sikerült a tanuló létrehozása!");
-
         }
 
-        public async Task DeleteAsync(int id)
+        public Task DeleteAsync(int id)
         {
-            var tanulo = await _context.Tanulok.FirstOrDefaultAsync(t => t.Id == id);
+            var tanulo = _context.Tanulok.FirstOrDefault(t => t.Id == id);
             if (tanulo != null)
             {
                 _context.Tanulok.Remove(tanulo);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
+            return Task.CompletedTask;
         }
 
-        public async Task<IEnumerable<Tanulo>> GetAllAsync()
+        public Task<IEnumerable<Tanulo>> GetAllAsync()
         {
-            var tanulok = await _context.Tanulok.ToListAsync();
+            var tanulok = _context.Tanulok.ToList();
             if (tanulok != null)
             {
-                return tanulok;
+                return Task.FromResult(tanulok.AsEnumerable());
             }
             throw new Exception("Nincs tanuló az adatbázisban!");
         }
 
-        public async Task<Tanulo> GetByIdAsync(int id)
+        public Task<Tanulo> GetByIdAsync(int id)
         {
-            var tanulo = await _context.Tanulok.FindAsync(id);
+            var tanulo = _context.Tanulok.Find(id);
             if (tanulo != null)
             {
-                return tanulo;
+                return Task.FromResult(tanulo);
             }
             throw new Exception("Nincs tanuló az adatbázisban!");
         }
 
-        public async Task UpdateAsync(Tanulo tanulo)
+        public Task UpdateAsync(Tanulo tanulo)
         {
             throw new NotImplementedException();
         }

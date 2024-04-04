@@ -20,72 +20,75 @@ namespace Classroom.Services.Implementations
             _context.Database.EnsureCreated();
         }
 
-
-        public async Task<Kurzus> CreateAsync(Kurzus kurzus)
+        public Task<Kurzus> CreateAsync(Kurzus kurzus)
         {
-            if(kurzus != null)
+            if (kurzus != null)
             {
-                await _context.Kurzusok.AddAsync(kurzus);
-                await _context.SaveChangesAsync();
+                _context.Kurzusok.Add(kurzus);
+                _context.SaveChanges();
                 ChangesSaved?.Invoke();
-                return kurzus;
+                return Task.FromResult(kurzus);
             }
             throw new Exception("Nem sikerült a kurzus létrehozása!");
         }
 
-        public async Task DeleteAsync(int id)
+        public Task DeleteAsync(int id)
         {
-            var kurzus = await _context.Kurzusok.FirstOrDefaultAsync(k => k.Id == id);
+            var kurzus = _context.Kurzusok.FirstOrDefault(k => k.Id == id);
             if (kurzus != null)
             {
                 _context.Kurzusok.Remove(kurzus);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 ChangesSaved?.Invoke();
             }
-            throw new Exception("Nem sikerült a kurzus törlése!");
+            else
+            {
+                throw new Exception("Nem sikerült a kurzus törlése!");
+            }
+            return Task.CompletedTask;
         }
 
-        public async Task<IEnumerable<Kurzus>> GetAllAsync()
+        public Task<IEnumerable<Kurzus>> GetAllAsync()
         {
-            var kurzusok = await _context.Kurzusok.ToListAsync();
+            var kurzusok = _context.Kurzusok.ToList();
             if (kurzusok != null)
             {
-                return  kurzusok;
+                return Task.FromResult(kurzusok.AsEnumerable());
             }
             throw new Exception("Nincs kurzus az adatbázisban!");
         }
 
-        public async Task<Kurzus> GetByIdAsync(int id)
+        public Task<Kurzus> GetByIdAsync(int id)
         {
-            var kurzus = await _context.Kurzusok.FirstOrDefaultAsync(k => k.Id == id);
+            var kurzus = _context.Kurzusok.FirstOrDefault(k => k.Id == id);
             if (kurzus != null)
             {
-                return kurzus;
+                return Task.FromResult(kurzus);
             }
             throw new Exception("Nincs kurzus az adatbázisban!");
         }
 
-        public async Task<IEnumerable<Kurzus>> GetByOktatoIdAsync(int oktatoId)
+        public Task<IEnumerable<Kurzus>> GetByOktatoIdAsync(int oktatoId)
         {
-            var kurzusok = await _context.Kurzusok.Where(k => k.OktatoId == oktatoId).ToListAsync();
+            var kurzusok = _context.Kurzusok.Where(k => k.OktatoId == oktatoId).ToList();
             if (kurzusok != null)
             {
-                return kurzusok;
+                return Task.FromResult(kurzusok.AsEnumerable());
             }
             throw new Exception("Nincs kurzus az adatbázisban!");
         }
 
-        public async Task<Kurzus> GetByTanuloIdAsync(int tanuloId)
+        public Task<Kurzus> GetByTanuloIdAsync(int tanuloId)
         {
-            var kurzus = await _context.Kurzusok.FirstOrDefaultAsync(k => k.Id == tanuloId);
+            var kurzus = _context.Kurzusok.FirstOrDefault(k => k.Id == tanuloId);
             if (kurzus != null)
             {
-                return kurzus;
+                return Task.FromResult(kurzus);
             }
             throw new Exception("Nincs kurzus az adatbázisban!");
         }
 
-        public async Task UpdateAsync(Kurzus kurzus)
+        public Task UpdateAsync(Kurzus kurzus)
         {
             throw new NotImplementedException();
         }
