@@ -43,5 +43,10 @@ namespace Classroom
             _tanuloView = new();
             ucKurzusNezet.Content = _tanuloView;
         }
+
+        private void miHozza_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

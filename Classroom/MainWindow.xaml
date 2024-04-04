@@ -17,6 +17,7 @@
                 <MenuItem x:Name="miOktatokNezet" Header="Oktatók" Click="miOktatokNezet_Click"></MenuItem>
                 
             </MenuItem>
+            <MenuItem Header="Hozzárendelés" x:Name="miHozza" Click="miHozza_Click"></MenuItem>
             
 
 
