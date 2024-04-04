@@ -53,6 +53,7 @@ namespace Classroom
             //HA VALAKI AZ APP-tól KÉR EGY UserViewModel PÉLDÁNYT AKKOR INNÉT AD EGYET!
             services.AddTransient<OktatoViewModel>();
             services.AddTransient<TanuloViewModel>();
+            services.AddTransient<KurzusViewModel>();
 
 
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Classroom.ModelViews;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,13 @@ namespace Classroom.Views
     /// </summary>
     public partial class KurzusView : UserControl
     {
+        private readonly KurzusViewModel? _viewModel;
+
         public KurzusView()
         {
             InitializeComponent();
+            _viewModel = App.Current.Services.GetService<KurzusViewModel>();
+            DataContext = _viewModel ?? throw new System.ArgumentNullException(nameof(_viewModel));
         }
     }
 }

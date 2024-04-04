@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Classroom.Services.Interfaces
 {
-    internal interface IKurzusDataService
+    public interface IKurzusDataService
     {
         Task<IEnumerable<Kurzus>> GetAllAsync();
         Task<Kurzus> GetByIdAsync(int id);

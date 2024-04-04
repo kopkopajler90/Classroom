@@ -10,7 +10,7 @@ namespace Classroom.Models
     {
         public int Id { get; set; }
         public string Nev { get; set; }
-        public int? OktatoId { get; set; }
+        public int OktatoId { get; set; }
         public Oktato Oktato { get; set; }
         public DateTime Kezdet { get; set; }
         public DateTime Vege { get; set; }

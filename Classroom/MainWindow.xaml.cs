@@ -19,16 +19,17 @@ namespace Classroom
     {
         private  OktatoView _oktatoView;
         private  TanuloView _tanuloView;
+        private KurzusView _kurzusView;
         public MainWindow()
         {
             InitializeComponent();
-            _oktatoView = new OktatoView();
-            _tanuloView = new TanuloView();
+           
         }
 
         private void miKurzusNezet_Click(object sender, RoutedEventArgs e)
         {
-
+            _kurzusView = new();
+            ucKurzusNezet.Content = _kurzusView;
         }
 
         private void miOktatokNezet_Click(object sender, RoutedEventArgs e)

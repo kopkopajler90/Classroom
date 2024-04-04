@@ -10,15 +10,14 @@
         <StackPanel Margin="10">
             <TextBlock Text="Kurzus adatai" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
             <TextBlock Text="Név:" FontWeight="Bold"/>
-            <TextBox Text="{Binding Nev}" Margin="0,0,0,10"/>
+            <TextBox Text="{Binding UjKurzus.Nev}" Margin="0,0,0,10"/>
             <TextBlock Text="Oktató:" FontWeight="Bold"/>
-            <ComboBox ItemsSource="{Binding Oktatok}" SelectedValue="{Binding OktatoId}" DisplayMemberPath="Vnev" Margin="0,0,0,10"/>
+            <ComboBox ItemsSource="{Binding Oktatok}" SelectedItem="{Binding UjKurzus.Oktato}" SelectedValuePath="Id" DisplayMemberPath="Vnev" Margin="0,0,0,10"/>
             <TextBlock Text="Kezdet:" FontWeight="Bold"/>
-            <DatePicker SelectedDate="{Binding Kezdet}" Margin="0,0,0,10"/>
+            <DatePicker SelectedDate="{Binding UjKurzus.Kezdet}" Margin="0,0,0,10"/>
             <TextBlock Text="Vége:" FontWeight="Bold"/>
-            <DatePicker SelectedDate="{Binding Vege}" Margin="0,0,0,10"/>
-            <TextBlock Text="Tanulók:" FontWeight="Bold"/>
-            <ListBox ItemsSource="{Binding Tanulok}" DisplayMemberPath="Nev" Margin="0,0,0,10"/>
+            <DatePicker SelectedDate="{Binding UjKurzus.Vege}" Margin="0,0,0,10"/>
+            <Button Command="{Binding HozzaadCommand}" Content="Kurzus Hozzáadása" Margin="0,10,0,0"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -58,7 +58,7 @@ namespace Classroom.ModelViews
         {
             await _oktatoDataService.CreateAsync(UjOktato);
             UjOktato = new Oktato();
-            await LoadOktatokAsync(); // Await the loading method
+            await LoadOktatokAsync(); 
         }
 
 
