@@ -19,6 +19,7 @@ namespace Classroom.ModelViews
         {
             _oktatoDataService = oktatoDataService;
             InitAsync();
+
             HozzaadCommand = new RelayCommand(Hozzaad, CanHozzaad);
         }
         private async Task InitAsync()
