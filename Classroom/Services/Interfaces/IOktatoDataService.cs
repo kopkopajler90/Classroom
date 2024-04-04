@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Classroom.Services.Interfaces
 {
-    public interface IOktatoDataService:ICommonDataService
+    public interface IOktatoDataService
     {
         Task<IEnumerable<Oktato>> GetAllAsync();
         Task<Oktato> GetByIdAsync(int id);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Classroom.Services.Interfaces
 {
-    public interface ITanuloDataService:ICommonDataService
+    public interface ITanuloDataService
     {
         Task<IEnumerable<Tanulo>> GetAllAsync();
         Task<Tanulo> GetByIdAsync(int id);
